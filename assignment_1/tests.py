@@ -453,22 +453,22 @@ class TestClasses(unittest.TestCase):
 
 def all_tests_suite():
     suite = unittest.TestSuite()
-    # suite.addTest(unittest.makeSuite(TrivialLinearTests))
-    # suite.addTest(unittest.makeSuite(SmallLinearTests))
-    # suite.addTest(unittest.makeSuite(MediumLinearTests))
-    # suite.addTest(unittest.makeSuite(BigLinearTests))
-    # suite.addTest(unittest.makeSuite(HugeLinearTests))
-    # suite.addTest(unittest.makeSuite(GinormousLinearTests))
+    suite.addTest(unittest.makeSuite(TrivialLinearTests))
+    suite.addTest(unittest.makeSuite(SmallLinearTests))
+    suite.addTest(unittest.makeSuite(MediumLinearTests))
+    suite.addTest(unittest.makeSuite(BigLinearTests))
+    suite.addTest(unittest.makeSuite(HugeLinearTests))
+    suite.addTest(unittest.makeSuite(GinormousLinearTests))
 
     # uncomment the following lines when you're
     # ready to run such tests
 
-    suite.addTest(unittest.makeSuite(TrivialBinaryTests))
-    suite.addTest(unittest.makeSuite(SmallBinaryTests))
-    suite.addTest(unittest.makeSuite(MediumBinaryTests))
-    suite.addTest(unittest.makeSuite(BigBinaryTests))
-    suite.addTest(unittest.makeSuite(HugeBinaryTests))
-    suite.addTest(unittest.makeSuite(GinormousBinaryTests))
+    # suite.addTest(unittest.makeSuite(TrivialBinaryTests))
+    # suite.addTest(unittest.makeSuite(SmallBinaryTests))
+    # suite.addTest(unittest.makeSuite(MediumBinaryTests))
+    # suite.addTest(unittest.makeSuite(BigBinaryTests))
+    # suite.addTest(unittest.makeSuite(HugeBinaryTests))
+    # suite.addTest(unittest.makeSuite(GinormousBinaryTests))
 
     # #suite.addTest(unittest.makeSuite(HelpfulDualTests))
     # #suite.addTest(unittest.makeSuite(TrivialDualTests))
