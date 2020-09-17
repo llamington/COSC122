@@ -5,6 +5,7 @@ and then complete the fraud_detect_hash function
 """
 from classes2 import Name, Node
 from stats import StatCounter, HASH_TABLES_CREATED
+from tools import read_test_data
 
 # note you might want to import other things below for testing
 # but your submission should only include the import lines above.
@@ -95,6 +96,7 @@ class HashTable:
         slot_index = hash(key) % self.number_of_slots
         current_node = self._data[slot_index]
         while current_node is not None:
+            self.comparisons_used += 1
             if current_node.key == key:
                 return current_node.value
             current_node = current_node.next_node
@@ -187,7 +189,16 @@ def hash_result_finder(tested, quarantined, load_factor=0.5):
     #    Hint: you don't want to generate a hash table with size 0...
     results = []
     # ---start student section---
-    pass
+    for nhi, name, result in tested:
+        hash_table.store_pair(name, (nhi, result))
+
+    for name in quarantined:
+        nhi_res_tup = hash_table.get_value(name)
+        if nhi_res_tup:
+            results.append((name, nhi_res_tup[0], nhi_res_tup[1]))
+        else:
+            results.append((name, None, None))
+    comparisons = hash_table.comparisons_used
     # ===end student section===
     # hint: you can get comparisons from the hash_table if one was used.
     return results, comparisons
@@ -198,17 +209,23 @@ def my_tests():
     """ put your own simple tests here.
     You don't need to submit this code
     """
-    table = HashTable(11)
-    table.store_pair(Name('Lee'), (123, True))
-    table.store_pair(Name('Bee'), (234, True))
-    table.store_pair(Name('Gee'), (567, True))
-    table.store_pair(Name('Fee'), (235, True))
-    # Bee had another test and is now clear :)
-    table.store_pair(Name('Bee'), (234, False))
-    print(table)
-    print('Bee\'s value =', table.get_value(Name('Bee')))  # should get (234, False)
 
-    print("Add more tests here...")
+    # table = HashTable(11)
+    # table.store_pair(Name('Lee'), (123, True))
+    # table.store_pair(Name('Bee'), (234, True))
+    # table.store_pair(Name('Gee'), (567, True))
+    # table.store_pair(Name('Fee'), (235, True))
+    # # Bee had another test and is now clear :)
+    # table.store_pair(Name('Bee'), (234, False))
+    # print(table)
+    # print('Bee\'s value =', table.get_value(Name('Bee')))  # should get (234, False)
+    #
+    # print("Add more tests here...")
+
+    tested, quarantined, quarantined_results = read_test_data('test_data/test_data-1000n-10r-10-a.txt')
+    results, comparisons = hash_result_finder(tested, quarantined)
+    print(results)
+    print(quarantined_results)
 
 
 if __name__ == '__main__':

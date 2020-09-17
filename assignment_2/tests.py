@@ -913,23 +913,23 @@ def all_tests_suite():
     # the following test your hash_result_finder function
     suite.addTest(unittest.makeSuite(TrivialHashTests))
     suite.addTest(unittest.makeSuite(SmallHashTests))
-    # suite.addTest(unittest.makeSuite(MediumHashTests))
-    # suite.addTest(unittest.makeSuite(MediumHashLoadFactorTests))
-    # suite.addTest(unittest.makeSuite(BigHashTests))
-    # suite.addTest(unittest.makeSuite(BigHashLoadFactorTests))
-    # suite.addTest(unittest.makeSuite(HugeHashTests))
-    # suite.addTest(unittest.makeSuite(SmallExactHashTests))
-    # suite.addTest(unittest.makeSuite(GinormousHashTests))
+    suite.addTest(unittest.makeSuite(MediumHashTests))
+    suite.addTest(unittest.makeSuite(MediumHashLoadFactorTests))
+    suite.addTest(unittest.makeSuite(BigHashTests))
+    suite.addTest(unittest.makeSuite(BigHashLoadFactorTests))
+    suite.addTest(unittest.makeSuite(HugeHashTests))
+    suite.addTest(unittest.makeSuite(SmallExactHashTests))
+    suite.addTest(unittest.makeSuite(GinormousHashTests))
 
     # the following test your dual_result_finder function
-    # suite.addTest(unittest.makeSuite(HelpfulDualTests))
-    # suite.addTest(unittest.makeSuite(TrivialDualTests))
-    # suite.addTest(unittest.makeSuite(SmallDualTests))
-    # suite.addTest(unittest.makeSuite(DualTestsExact))
-    # suite.addTest(unittest.makeSuite(MediumDualTests))
-    # suite.addTest(unittest.makeSuite(BigDualTests))
-    # suite.addTest(unittest.makeSuite(HugeDualTests))
-    # suite.addTest(unittest.makeSuite(GinormousDualTests))
+    suite.addTest(unittest.makeSuite(HelpfulDualTests))
+    suite.addTest(unittest.makeSuite(TrivialDualTests))
+    suite.addTest(unittest.makeSuite(SmallDualTests))
+    suite.addTest(unittest.makeSuite(DualTestsExact))
+    suite.addTest(unittest.makeSuite(MediumDualTests))
+    suite.addTest(unittest.makeSuite(BigDualTests))
+    suite.addTest(unittest.makeSuite(HugeDualTests))
+    suite.addTest(unittest.makeSuite(GinormousDualTests))
 
 
     return suite
