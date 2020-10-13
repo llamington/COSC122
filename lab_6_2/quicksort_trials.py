@@ -27,7 +27,7 @@ n_trials = 100
 # initially [40, 80, 120 ... 760]
 # list_of_ns will be used as the x-axis on your graphs
 # and average time will be plotted on the y-axis
-list_of_ns = list(range(40, 800, 40))
+list_of_ns = [760]
 
 
 # consider converting this code into a function that takes
@@ -42,9 +42,11 @@ for n in list_of_ns:
     # then divide by the number of trials
     for i in range(n_trials):
         numbers_to_sort = list(range(n))  # a sorted list
+        # numbers_to_sort = [1] * n
+        # random.shuffle(numbers_to_sort)
         # randomise the numbers_to_sort here if you want to test random data
         start = get_time()
-        s = quicksort(numbers_to_sort, 'left-pivot')
+        s = quicksort(numbers_to_sort, 'mo3-pivot')
         end = get_time()
         time_taken = end - start
         total_time += time_taken
@@ -58,7 +60,7 @@ for n in list_of_ns:
 # If you want to get the average time for just one data size
 # you could make the list of n's a list with just one number
 # for example [760] :)
-
+print(avg_times)
 pyplot.plot(list_of_ns, avg_times, 'bo')
 pyplot.title("Time vs. List size, average of {0} trials".format(n_trials))
 pyplot.xlabel('n')

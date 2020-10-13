@@ -33,23 +33,25 @@ def dual_result_finder(tested, quarantined):
     comparisons = 0
     results = []
     # ---start student section---
-    tested_i = 0
-    for q_name in quarantined:
-        while q_name > tested[tested_i][1]:
-            if tested_i >= len(tested)-1:
-                break
-            else:
-                comparisons += 1
-                tested_i += 1
-        comparisons += 2
-        if tested[tested_i][1] == q_name:
-            results.append((q_name, tested[tested_i][0], tested[tested_i][2]))
-        else:
-            results.append((q_name, None, None))
+    q_i = 0
+    t_i = 0
 
+    while q_i < len(quarantined) and t_i < len(tested):
+        tested_name = tested[t_i][1]
+        comparisons += 1
+        if tested_name >= quarantined[q_i]:
+            comparisons += 1
+            if tested_name == quarantined[q_i]:
+                results.append((tested_name, tested[t_i][0], tested[t_i][2]))
+                t_i += 1
+            else:
+                results.append((quarantined[q_i], None, None))
+            q_i += 1
+        else:
+            t_i += 1
+    results += [(name, None, None) for name in quarantined[q_i:]]
 
     # ===end student section===
-
     return results, comparisons
 
 
@@ -57,7 +59,12 @@ if __name__ == '__main__':
     # put your own simple tests here
     # you don't need to submit this code
 
-    tested, quarantined, quarantined_results = read_test_data('test_data/test_data-1000n-1000n-1-a.txt')
+    # tested, quarantined, quarantined_results = read_test_data('test_data/test_data-1000n-1000n-1-a.txt')
+    # results, comparisons = dual_result_finder(tested, quarantined)
+    # print(results)
+    # print(quarantined_results)
+
+    tested, quarantined, quarantined_results = [(1, Name('hello'), True)], [Name('hello')], []
     results, comparisons = dual_result_finder(tested, quarantined)
     print(results)
     print(quarantined_results)

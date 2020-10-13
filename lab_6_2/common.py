@@ -40,6 +40,8 @@ def common_items(list_x, list_y):
     []
     >>> common_items([],[])
     []
+    >>> common_items([0,1,2,3],[0,0,2,4])
+    [0, 2]
     """
     # add the following doctests (and some of your own)
     # when ready for lists of non-unique items
@@ -49,9 +51,27 @@ def common_items(list_x, list_y):
     # [0, 2, 5, 7]
 
     # ---start student section---
-    pass
+    common = []
+    y_i = 0
+    for num in list_x:
+        if len(list_y) > 0:
+            while num > list_y[y_i]:
+                if y_i >= len(list_y) - 1:
+                    break
+                else:
+                    y_i += 1
+            if list_y[y_i] == num:
+                if num not in common:
+                    common.append(num)
+
+    return common
     # ===end student section===
 
 
 if __name__ == "__main__":
-    doctest.testmod()
+    # doctest.testmod()
+    with open('data/ordered_14.txt') as file_1, open('data/ordered_15.txt') as file_2:
+        file_1_lines = [int(line) for line in file_1.readlines()]
+        file_2_lines = [int(line) for line in file_2.readlines()]
+
+    print(len(common_items(file_1_lines, file_2_lines)))

@@ -153,7 +153,19 @@ def quicksort_range_helper(values, left, right, start, end, style):
     but only if the left-right range has any overlap with the start-end range.
     """
     # ---start student section---
-    pass
+    if left >= right:
+        return
+
+    lower_bound = left if left < start else start
+    upper_bound = right if right > end else end
+    # Partition the list
+    split = partition(values, lower_bound, upper_bound, style)
+
+    # Sort the left part
+    quicksort_helper(values, lower_bound, split - 1, style)
+
+    # Sort the right part
+    quicksort_helper(values, split + 1, upper_bound, style)
     # ===end student section===
 
 
@@ -219,7 +231,12 @@ def pivot_index_mo3(values, left, right):
 
 
 if __name__ == "__main__":
-    # doctest.testmod()
-    with open('data/list2.txt') as file:
+    doctest.testmod()
+    with open('data/list1.txt') as file:
         file_list = [int(line) for line in file.readlines()]
-    print(pivot_index_mo3(file_list, 0, len(file_list)-1))
+    print(len(file_list))
+    list_cpy = quicksort_range(file_list, len(file_list)/2-1, len(file_list)/2)
+
+    print(list_cpy[int(len(file_list)/2-1)], list_cpy[int(len(file_list)/2)])
+    # values = list(range(800))
+    # quicksort_range()

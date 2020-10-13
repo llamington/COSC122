@@ -118,9 +118,6 @@ class HashTable:
         string_thing += (f'Load factor  = {self.load_factor():.2f}')
         return string_thing
 
-    def __eq__(self, other):
-        return self._data == other._data
-
     def __len__(self):
         return len(self._data)
 
@@ -189,6 +186,9 @@ def hash_result_finder(tested, quarantined, load_factor=0.5):
     #    Hint: you don't want to generate a hash table with size 0...
     results = []
     # ---start student section---
+    if len(tested) == 0:
+        return [], 0
+
     for nhi, name, result in tested:
         hash_table.store_pair(name, (nhi, result))
 
@@ -221,8 +221,13 @@ def my_tests():
     # print('Bee\'s value =', table.get_value(Name('Bee')))  # should get (234, False)
     #
     # print("Add more tests here...")
+    #
+    # # tested, quarantined, quarantined_results = [(1, Name('hello'), True)], [(1, Name('hello'), True)], []
+    # # results, comparisons = hash_result_finder(tested, quarantined)
+    # # print(results)
+    # # print(quarantined_results)
 
-    tested, quarantined, quarantined_results = read_test_data('test_data/test_data-1000n-10r-10-a.txt')
+    tested, quarantined, quarantined_results = [(1, Name('hello'), True)], [Name('hello')], []
     results, comparisons = hash_result_finder(tested, quarantined)
     print(results)
     print(quarantined_results)
