@@ -29,22 +29,25 @@ def bst_store_pair(root, key, value):
     if root is None:
         raise ValueError("I need to have something to add to!")
     # ---start student section---
-    inserted = False
+    in_position = False
     current_node = root
-    while not inserted:
+    while not in_position:
         comparisons += 1
         if key < current_node.key:
             # Insert to the left
             if current_node.left is None:
                 current_node.left = BstNode(key, value)
-                inserted = True
+                in_position = True
             else:
                 current_node = current_node.left
         else:
             # Insert to the right
-            if current_node.right is None:
+            comparisons += 1
+            if current_node.key == key:
+                current_node.value = value
+            elif current_node.right is None:
                 current_node.right = BstNode(key, value)
-                inserted = True
+                in_position = True
             else:
                 current_node = current_node.right
     # ===end student section===
@@ -67,17 +70,42 @@ def get_value_from_tree(root, key):
     comparisons = 0
     value = None
     # ---start student section---
+
     is_found = False
-    current_node = root
+    is_in_subtree = False
+
+    comparisons += 1
+    # perform initial comparison without checking key equality
+    if key < root.key:
+        if root.left:
+            comparisons += 1
+            is_in_subtree = True if min_key_in_bst(root.left) <= key < root.key else False
+            current_node = root.left
+    else:
+        if root.right:
+            comparisons += 1
+            is_in_subtree = True if min_key_in_bst(root.right) >= key > root.key else False
+            current_node = root.right
+
+    if not is_in_subtree:
+        comparisons += 1
+        if root.key == key:
+            is_found = True
+            value = root.value
+
+
     while not is_found and current_node:
         comparisons += 1
-        if key == current_node.key:
-            value = current_node.value
-            is_found = True
-        elif key < current_node.key:
-            current_node = current_node.left
+        if key <= current_node.key:
+            comparisons += 1
+            if key == current_node.key:
+                value = current_node.value
+                is_found = True
+            else:
+                current_node = current_node.left
         else:
             current_node = current_node.right
+
     # ===end student section===
     return value, comparisons
 
@@ -90,10 +118,11 @@ def min_key_in_bst(root):
     """
     result = None
     # ---start student section---
+    result = root.key
     current_node = root
     while current_node.left is not None:
         current_node = current_node.left
-        result = current_node.value
+        result = current_node.key
     # ===end student section===
     return result
 
@@ -107,10 +136,11 @@ def max_key_in_bst(root):
     """
     result = None
     # ---start student section---
+    result = root.key
     current_node = root
     while current_node.right is not None:
         current_node = current_node.right
-        result = current_node.value
+        result = current_node.key
     # ===end student section===
     return result
 

@@ -1181,8 +1181,8 @@ def all_tests_suite():
     # ready to run such tests
 
     # tests for bst functions
-    suite.addTest(unittest.makeSuite(SimpleBstStoreTests))
-    # suite.addTest(unittest.makeSuite(SimpleGetValueTests))
+    # suite.addTest(unittest.makeSuite(SimpleBstStoreTests))
+    suite.addTest(unittest.makeSuite(SimpleGetValueTests))
     # suite.addTest(unittest.makeSuite(SimpleBstNodeCountTests))
     # suite.addTest(unittest.makeSuite(SimpleBstDepthTests))
     # suite.addTest(unittest.makeSuite(SimpleBstMinTests))
